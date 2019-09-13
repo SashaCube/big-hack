@@ -9,8 +9,8 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.cubesoft.oleksandr.havryliuk.big_hack"
-        minSdkVersion 22
-        targetSdkVersion 29
+        minSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -33,4 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Anko
+    implementation "org.jetbrains.anko:anko:0.10.8"
 }
