@@ -24,7 +24,6 @@ import java.util.function.Function;
 public class SendDataStore implements ISendDataStore
 {
     public static final String TEATCHER = "TEATCHER";
-    public static final String SUBJECT = "SUBJECT";
     public static final String STUDENT = "STUDENT";
     public static final String TASK = "TASK";
     public static final String ANSWER = "ANSWER";
