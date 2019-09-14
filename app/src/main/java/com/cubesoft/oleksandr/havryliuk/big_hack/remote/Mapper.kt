@@ -4,5 +4,5 @@ interface Mapper<T>{
 
     fun toJson(type: T): String
 
-    fun toJson(string: String): T
+    fun fromJson(string: String): T
 }

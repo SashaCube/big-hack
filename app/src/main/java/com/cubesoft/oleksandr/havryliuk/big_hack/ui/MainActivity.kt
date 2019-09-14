@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.AnswerParse
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
 import org.jetbrains.anko.doAsync
@@ -22,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         doAsync {  Test().main()}
 
+        val answer = Answer("1", "2", "3", "4", "Test")
+        val answerParse = AnswerParse()
+        answerParse.toJson(answer)
+        Log.d("api", answerParse.toJson(answer))
 
         val call = Api.create().getEventsByTag("Thisiscustomtag2")
         call.enqueue(object : Callback<EventsContainer> {

@@ -25,7 +25,7 @@ class GetDataStore {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { taskMapper.fromJson(it.value) })
                     }
                 }
 
@@ -43,7 +43,7 @@ class GetDataStore {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { taskMapper.fromJson(it.value) })
                     }
                 }
 
@@ -62,7 +62,7 @@ class GetDataStore {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { answerMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { answerMapper.fromJson(it.value) })
                     }
                 }
 
@@ -80,7 +80,7 @@ class GetDataStore {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { markMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { markMapper.fromJson(it.value) })
                     }
                 }
 
