@@ -6,42 +6,88 @@ import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Mark
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Task
+import com.cubesoft.oleksandr.havryliuk.big_hack.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GetDataStore : IGetDataStore{
+class GetDataStore {
 
-    val api = Api.create()
+    private lateinit var taskMapper: Mapper<Task>
+    private lateinit var markMapper: Mapper<Mark>
+    private lateinit var answerMapper: Mapper<Answer>
+    private val api = Api.create()
 
-    override fun getTasks(): List<Task> {
-        val call = Api.create().getEventsByTag("Thisiscustomtag2")
-        call.enqueue(object : Callback<EventsContainer> {
-            override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
-                Log.d("api", response.body().toString())
-            }
+    fun getTasksByTeacherId(teacherId: String, callback: Utils.LoadData<List<Task>>) {
+        Api.create().getEventsByTag("Thisiscustomtag2")
+            .enqueue(object : Callback<EventsContainer> {
+                override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
-            override fun onFailure(call: Call<EventsContainer>, t: Throwable) {
-                Log.d("api", "error")
-            }
-        })
+                    if (response.isSuccessful) {
+                        Log.d("api", response.body().toString())
+                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                    }
+                }
 
-        return listOf()
+                override fun onFailure(call: Call<EventsContainer>, t: Throwable) {
+                    Log.d("api", "error")
+                    callback.onFailure()
+                }
+            })
     }
 
-    override fun getTasksByTeacherId(teacherId: String): List<Task> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getTasksByClassId(classId: String, callback: Utils.LoadData<List<Task>>) {
+        Api.create().getEventsByTag("Thisiscustomtag2")
+            .enqueue(object : Callback<EventsContainer> {
+                override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
+
+                    if (response.isSuccessful) {
+                        Log.d("api", response.body().toString())
+                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                    }
+                }
+
+                override fun onFailure(call: Call<EventsContainer>, t: Throwable) {
+                    Log.d("api", "error")
+                    callback.onFailure()
+                }
+            })
     }
 
-    override fun getTasksByClassId(classId: String): List<Task> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getAnswersByTaskId(taskId: Int, callback: Utils.LoadData<List<Answer>>) {
+        //TODO get id teacher that will check it
+        Api.create().getEventsByTag("Thisiscustomtag2")
+            .enqueue(object : Callback<EventsContainer> {
+                override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
+
+                    if (response.isSuccessful) {
+                        Log.d("api", response.body().toString())
+                        callback.onData(response.body().events.map { answerMapper.toJson(it.value) })
+                    }
+                }
+
+                override fun onFailure(call: Call<EventsContainer>, t: Throwable) {
+                    Log.d("api", "error")
+                    callback.onFailure()
+                }
+            })
     }
 
-    override fun getAnswersByTaskId(taskId: Int): List<Answer> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    fun getMarkByUserId(uesrId: Int, callback: Utils.LoadData<List<Mark>>) {
+        Api.create().getEventsByTag("Thisiscustomtag2")
+            .enqueue(object : Callback<EventsContainer> {
+                override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
-    override fun getMark(answerId: Int): Mark {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    if (response.isSuccessful) {
+                        Log.d("api", response.body().toString())
+                        callback.onData(response.body().events.map { markMapper.toJson(it.value) })
+                    }
+                }
+
+                override fun onFailure(call: Call<EventsContainer>, t: Throwable) {
+                    Log.d("api", "error")
+                    callback.onFailure()
+                }
+            })
     }
 }
