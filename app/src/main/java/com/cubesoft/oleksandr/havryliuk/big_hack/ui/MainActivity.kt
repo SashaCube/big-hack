@@ -1,7 +1,8 @@
-package com.cubesoft.oleksandr.havryliuk.big_hack
+package com.cubesoft.oleksandr.havryliuk.big_hack.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
 import org.jetbrains.anko.doAsync
 
