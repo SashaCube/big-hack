@@ -53,7 +53,8 @@ public class SendDataStore implements ISendDataStore
         tags.add(task.getId());
         tags.add(CLASS+task.getClassId());
         signAndSendTransaction(privateKey,space,key,tags,
-                "TASK created for class: "+task.getClassId()+" \nTaskName -> " + task.getName(),
+                "TASK created for class: "+task.getClassId()+
+                        " \nTaskName -> " + task.getName(),
                 task.getBody());
     }
 
@@ -62,8 +63,8 @@ public class SendDataStore implements ISendDataStore
         List<String> tags = new ArrayList<>();
         tags.add(TEATCHER+mark.getTeacherId());
         tags.add(CLASS+mark.getClassId());
-        tags.add(TASK+mark.getTaskId());
-//        tags.add(mark.getUserID());
+        tags.add(ANSWER+mark.getTaskId());
+        tags.add(STUDENT+mark.getStudentId());
 //        tags.add(mark.getAnswerID());
         tags.add(mark.getId());
         signAndSendTransaction(privateKey,space,key,tags,

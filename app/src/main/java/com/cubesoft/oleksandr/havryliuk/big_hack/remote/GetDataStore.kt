@@ -19,7 +19,7 @@ class GetDataStore {
     private val api = Api.create()
 
     fun getTasksByTeacherId(teacherId: String, callback: Utils.LoadData<List<Task>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        Api.create().getEventsByTag(SendDataStore.TEATCHER + teacherId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
@@ -37,7 +37,7 @@ class GetDataStore {
     }
 
     fun getTasksByClassId(classId: String, callback: Utils.LoadData<List<Task>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        Api.create().getEventsByTag(SendDataStore.CLASS + classId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
@@ -54,9 +54,9 @@ class GetDataStore {
             })
     }
 
-    fun getAnswersByTaskId(taskId: Int, callback: Utils.LoadData<List<Answer>>) {
+    fun getAnswersByTaskId(taskId: String, callback: Utils.LoadData<List<Answer>>) {
         //TODO get id teacher that will check it
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        Api.create().getEventsByTag(SendDataStore.ANSWER + taskId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
@@ -73,8 +73,8 @@ class GetDataStore {
             })
     }
 
-    fun getMarkByUserId(uesrId: Int, callback: Utils.LoadData<List<Mark>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+    fun getMarkByUserId(studentId: String, callback: Utils.LoadData<List<Mark>>) {
+        Api.create().getEventsByTag(SendDataStore.STUDENT + studentId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 

@@ -8,6 +8,7 @@ import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.AnswerParse
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
+import com.cubesoft.oleksandr.havryliuk.big_hack.remote.SendDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
 import org.jetbrains.anko.doAsync
 import retrofit2.Call
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        doAsync {  Test().main()}
+        doAsync {  SendDataStore().main()}
 
         val answer = Answer("1", "2", "3", "4", "Test")
         val answerParse = AnswerParse()
