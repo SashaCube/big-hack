@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.cubesoft.oleksandr.havryliuk.big_hack"
         minSdkVersion 26
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -20,6 +20,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -36,4 +42,7 @@ dependencies {
 
     // Anko
     implementation "org.jetbrains.anko:anko:0.10.8"
+
+    //Json
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

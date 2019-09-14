@@ -21,7 +21,7 @@ public class Test {
         String space = "space1";
         String key = "key1";
 
-        BloqlyClient bloqlyClient = new BloqlyClient("http://127.0.0.1:8082");
+        BloqlyClient bloqlyClient = new BloqlyClient("http://10.4.32.17:8082");
 
         Optional<SignedTransaction> txOpt = bloqlyClient.getLastTransaction(space, key);
 
