@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
+import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
+import org.jetbrains.anko.doAsync
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        //Test().testTransaction()
+        doAsync {  Test().main()}
 
 
         val call = Api.create().getEventsByTag("Thisiscustomtag2")
@@ -33,5 +35,4 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-
 }

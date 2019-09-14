@@ -6,6 +6,7 @@ import com.bloqly.api.BloqlyClient;
 import com.bloqly.api.KeyPair;
 import com.bloqly.api.transaction.SignedTransaction;
 import com.bloqly.api.transaction.Transaction;
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -14,8 +15,14 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class Test {
+
+    public void main() {
+        Answer an = new Answer("13", "1", "2","3", "TestBody");
+        testTransaction(an);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void testTransaction() {
+    public void testTransaction(Answer answer) {
         String privateKey = "giwyrQcDYhudVrSjdKLgp44YwyD/nl3F1AnO0KKeJTo=";
         String publicKey = "sveQDMN3Fdzi0Yvm3bhkyu0uT/08wQfymhXqD0GT4vU=";
         String space = "space1";
@@ -39,13 +46,15 @@ public class Test {
         tx.setSpace(space);
         tx.setKey(key);
         tx.setNonce(nonce);
-        tx.setMemo("memo");
+        tx.setMemo("Ihor`s test transaction");
         tx.setTimestamp(Instant.now().toEpochMilli());
-        tx.setValue("test-value");
+        tx.setValue(answer.getBody());
 
         List<String> tags = new ArrayList<>();
-        tags.add("tag1");
-        tags.add("tag2");
+        tags.add(answer.getId());
+        tags.add(answer.getClassId());
+        tags.add(answer.getTaskId());
+        tags.add(answer.getSubjectId());
         tx.setTags(tags);
 
         SignedTransaction signedTx = keyPair.signTransaction(tx);
