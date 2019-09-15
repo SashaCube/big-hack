@@ -5,68 +5,69 @@
               android:background="@color/wight"
               android:layout_height="match_parent">
 
+    <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Оцінити Відповідь"
+            android:textSize="20sp"/>
+
     <View android:layout_width="match_parent"
           android:layout_height="1dp"
           android:background="@color/colorPrimary"/>
 
 
     <TextView
-            android:labelFor="@id/ed_name"
-            android:id="@+id/ed_name_label"
+            android:id="@+id/tv_task_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textSize="20sp"
             android:text="Назва Завдання"/>
 
-    <EditText
-            android:id="@+id/ed_name"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
+    <TextView
             android:padding="20dp"
-            android:hint="Завдання 1"
-            android:textSize="20sp"/>
- <TextView
-            android:labelFor="@id/ed_body"
-            android:id="@+id/ed_body_label"
+            android:textSize="20sp"
+            android:id="@+id/tv_task_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Зміст"/>
+            android:text="Зміст Завдання"/>
 
-    <EditText
-            android:id="@+id/ed_body"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
+    <TextView
             android:padding="20dp"
-            android:hint="Написати твір на тему ...."
-            android:textSize="20sp"/>
- <TextView
-            android:labelFor="@id/ed_name"
-            android:id="@+id/ed_class_id_label"
+            android:textSize="20sp"
+            android:id="@+id/tv_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Клас"/>
+            android:text="Відповідь До Завдання"/>
+
+    <TextView
+            android:padding="20dp"
+            android:textSize="15sp"
+            android:id="@+id/tv_mark_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ваша Оцінка"/>
 
     <EditText
-            android:id="@+id/ed_class_id_name"
+            android:id="@+id/ed_mark"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center"
             android:padding="20dp"
-            android:hint="7Б"
+            android:hint="100"
             android:textSize="20sp"/>
-
     <TextView
             android:id="@+id/tv_send_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:fontFamily="casual"
-            android:textColor="@color/wight"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"            android:layout_margin="20dp"
+            android:layout_margin="20dp"
             android:text="ГОТОВО"
             android:textSize="20sp"/>
-
 
 </LinearLayout>

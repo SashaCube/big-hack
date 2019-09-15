@@ -1,4 +1,4 @@
-package com.cubesoft.oleksandr.havryliuk.big_hack.ui.student
+package com.cubesoft.oleksandr.havryliuk.big_hack.ui.teacher
 
 import android.os.Bundle
 import android.util.Log
@@ -10,22 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
-import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Task
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.GetDataStore
-import com.cubesoft.oleksandr.havryliuk.big_hack.ui.adapter.TaskAdapter
+import com.cubesoft.oleksandr.havryliuk.big_hack.ui.adapter.AnswerAdapter
 import com.cubesoft.oleksandr.havryliuk.big_hack.utils.Utils
-import kotlinx.android.synthetic.main.fragment_teacher_my_task.view.*
+import kotlinx.android.synthetic.main.fragment_teacher_answers_to_check.view.*
 
-class StudentTasksFragment : Fragment() {
+class TeacherAnswersToCheckFragment : Fragment() {
 
-    lateinit var viewAdapter: TaskAdapter
+    lateinit var viewAdapter: AnswerAdapter
     private lateinit var swLayout: SwipeRefreshLayout
+
+    private val currentTask by lazy {
+        (activity as TeacherActivity).currentTask
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_student_task, container, false)
+        val root = inflater.inflate(R.layout.fragment_teacher_answers_to_check, container, false)
 
         initAdapter()
         initView(root)
@@ -34,8 +37,8 @@ class StudentTasksFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        viewAdapter = TaskAdapter {
-            (activity as StudentActivity).showCreateAnswerFragment(it)
+        viewAdapter = AnswerAdapter {
+            (activity as TeacherActivity).showTeacherCreateMarkFragment(it)
         }
     }
 
@@ -56,30 +59,25 @@ class StudentTasksFragment : Fragment() {
 
     }
 
-    private fun loadData() {
-        swLayout.isRefreshing = true
-        GetDataStore().getTasksByClassId(SCHOOL_ID, object : Utils.LoadData<List<Task>> {
-            override fun onData(data: List<Task>?) {
+    fun loadData() {
+        GetDataStore().getAnswersByTaskId(currentTask.id, object : Utils.LoadData<List<Answer>> {
+            override fun onData(data: List<Answer>?) {
                 if (data != null) {
                     viewAdapter.update(data)
 
                 } else {
-                    Log.d("Student_Task", "data is null")
+                    Log.d("Teacher_Answers", "data is null")
                 }
 
                 swLayout.isRefreshing = false
             }
 
             override fun onFailure() {
-                Log.d("Student_Task", "failure")
+                Log.d("Teacher_Answers", "failure")
                 swLayout.isRefreshing = false
             }
 
         })
-    }
-
-    companion object {
-        const val SCHOOL_ID = "qqq"
     }
 
 }

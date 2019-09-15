@@ -1,4 +1,4 @@
-package com.cubesoft.oleksandr.havryliuk.big_hack.ui.student
+package com.cubesoft.oleksandr.havryliuk.big_hack.ui.teacher
 
 import android.os.Bundle
 import android.util.Log
@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
-import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Task
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.GetDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.ui.adapter.TaskAdapter
+import com.cubesoft.oleksandr.havryliuk.big_hack.ui.student.StudentTasksFragment.Companion.SCHOOL_ID
 import com.cubesoft.oleksandr.havryliuk.big_hack.utils.Utils
 import kotlinx.android.synthetic.main.fragment_teacher_my_task.view.*
 
-class StudentTasksFragment : Fragment() {
+class TeacherTasksToCheckFragment : Fragment() {
 
     lateinit var viewAdapter: TaskAdapter
     private lateinit var swLayout: SwipeRefreshLayout
@@ -25,7 +25,7 @@ class StudentTasksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_student_task, container, false)
+        val root = inflater.inflate(R.layout.fragment_teacher_check, container, false)
 
         initAdapter()
         initView(root)
@@ -35,7 +35,7 @@ class StudentTasksFragment : Fragment() {
 
     private fun initAdapter() {
         viewAdapter = TaskAdapter {
-            (activity as StudentActivity).showCreateAnswerFragment(it)
+            (activity as TeacherActivity).showTeacherAnswersToCheckFragment(it)
         }
     }
 
@@ -56,30 +56,26 @@ class StudentTasksFragment : Fragment() {
 
     }
 
-    private fun loadData() {
-        swLayout.isRefreshing = true
+    fun loadData() {
+        // TODO : set to real ID
         GetDataStore().getTasksByClassId(SCHOOL_ID, object : Utils.LoadData<List<Task>> {
             override fun onData(data: List<Task>?) {
                 if (data != null) {
                     viewAdapter.update(data)
 
                 } else {
-                    Log.d("Student_Task", "data is null")
+                    Log.d("Teacher_Task", "data is null")
                 }
 
                 swLayout.isRefreshing = false
             }
 
             override fun onFailure() {
-                Log.d("Student_Task", "failure")
+                Log.d("Teacher_Task", "failure")
                 swLayout.isRefreshing = false
             }
 
         })
-    }
-
-    companion object {
-        const val SCHOOL_ID = "qqq"
     }
 
 }
