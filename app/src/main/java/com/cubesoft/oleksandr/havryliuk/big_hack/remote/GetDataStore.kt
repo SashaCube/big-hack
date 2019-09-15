@@ -1,6 +1,9 @@
 package com.cubesoft.oleksandr.havryliuk.big_hack.remote
 
 import android.util.Log
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.AnswerParse
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.MarkParse
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.TaskParse
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
@@ -13,19 +16,19 @@ import retrofit2.Response
 
 class GetDataStore {
 
-    private lateinit var taskMapper: Mapper<Task>
-    private lateinit var markMapper: Mapper<Mark>
-    private lateinit var answerMapper: Mapper<Answer>
+    private  var taskMapper =  TaskParse()
+    private  var markMapper = MarkParse()
+    private  var answerMapper = AnswerParse()
     private val api = Api.create()
 
     fun getTasksByTeacherId(teacherId: String, callback: Utils.LoadData<List<Task>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        api.getEventsByTag(SendDataStore.TASK + teacherId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { taskMapper.fromJson(it.value) })
                     }
                 }
 
@@ -37,13 +40,13 @@ class GetDataStore {
     }
 
     fun getTasksByClassId(classId: String, callback: Utils.LoadData<List<Task>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        api.getEventsByTag(SendDataStore.CLASS + classId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { taskMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { taskMapper.fromJson(it.value) })
                     }
                 }
 
@@ -54,15 +57,15 @@ class GetDataStore {
             })
     }
 
-    fun getAnswersByTaskId(taskId: Int, callback: Utils.LoadData<List<Answer>>) {
+    fun getAnswersByTaskId(taskId: String, callback: Utils.LoadData<List<Answer>>) {
         //TODO get id teacher that will check it
-        Api.create().getEventsByTag("Thisiscustomtag2")
+        api.getEventsByTag(SendDataStore.ANSWER + taskId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { answerMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { answerMapper.fromJson(it.value) })
                     }
                 }
 
@@ -73,14 +76,14 @@ class GetDataStore {
             })
     }
 
-    fun getMarkByUserId(uesrId: Int, callback: Utils.LoadData<List<Mark>>) {
-        Api.create().getEventsByTag("Thisiscustomtag2")
+    fun getMarkByUserId(studentId: String, callback: Utils.LoadData<List<Mark>>) {
+        api.getEventsByTag(SendDataStore.STUDENT + studentId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
                     if (response.isSuccessful) {
                         Log.d("api", response.body().toString())
-                        callback.onData(response.body().events.map { markMapper.toJson(it.value) })
+                        callback.onData(response.body().events.map { markMapper.fromJson(it.value) })
                     }
                 }
 

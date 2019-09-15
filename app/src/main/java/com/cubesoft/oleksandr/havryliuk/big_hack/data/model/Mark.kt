@@ -6,7 +6,7 @@ data class Mark(
     @SerializedName("id") var id: String,
     @SerializedName("taskId") var taskId: String,
     @SerializedName("classId") var classId: String,
-    @SerializedName("studentId") var subjectId: String,
+    @SerializedName("studentId") var studentId: String,
     @SerializedName("teacherId") var teacherId: String,
     @SerializedName("body") var body: String
 )
