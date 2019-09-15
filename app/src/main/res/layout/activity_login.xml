@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_marginTop="100dp"
+            android:labelFor="@id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ЛОГІН"/>
+
+    <EditText
+            android:id="@+id/ed_login"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:hint="login"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:labelFor="@id/ed_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ПАРОЛЬ"/>
+
+    <EditText
+            android:id="@+id/ed_password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:hint="7Б"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="ВХІД"
+            android:textSize="20sp"/>
+
+</LinearLayout>

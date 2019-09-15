@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/wight"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Створити Завдання"
+            android:textSize="20sp"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorPrimary"/>
+
+
+    <TextView
+            android:labelFor="@id/ed_name"
+            android:id="@+id/ed_name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Назва Завдання"/>
+
+    <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:hint="Завдання 1"
+            android:textSize="20sp"/>
+ <TextView
+            android:labelFor="@id/ed_body"
+            android:id="@+id/ed_body_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Зміст"/>
+
+    <EditText
+            android:id="@+id/ed_body"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:hint="Написати твір на тему ...."
+            android:textSize="20sp"/>
+ <TextView
+            android:labelFor="@id/ed_name"
+            android:id="@+id/ed_class_id_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Клас"/>
+
+    <EditText
+            android:id="@+id/ed_class_id_name"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:hint="7Б"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/tv_send_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="ГОТОВО"
+            android:textSize="20sp"/>
+
+
+</LinearLayout>

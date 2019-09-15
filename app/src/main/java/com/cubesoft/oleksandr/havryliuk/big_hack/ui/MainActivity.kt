@@ -2,6 +2,7 @@ package com.cubesoft.oleksandr.havryliuk.big_hack.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.ui.teacher.TeacherActivity
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
 
-        startActivity(Intent(this, TeacherActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
 
     }
 }

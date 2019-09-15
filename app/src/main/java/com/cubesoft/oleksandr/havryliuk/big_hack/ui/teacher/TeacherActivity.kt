@@ -3,6 +3,7 @@ package com.cubesoft.oleksandr.havryliuk.big_hack.ui.teacher
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Task
 import com.cubesoft.oleksandr.havryliuk.big_hack.utils.addFragment
 import kotlinx.android.synthetic.main.activity_teacher.*
 
@@ -27,11 +28,15 @@ class TeacherActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCheckTeacherFragment(){
+    fun showCheckTeacherFragment(){
         addFragment(supportFragmentManager, R.id.fragment_container, TeacherCheckFragment())
     }
 
-    private fun showTeacherMyTasksFragment(){
+    fun showTeacherMyTasksFragment(){
         addFragment(supportFragmentManager, R.id.fragment_container, TeacherMyTaskFragment())
+    }
+
+    fun showCreateTaskFragment(){
+        addFragment(supportFragmentManager, R.id.fragment_container, CreateTaskFragment())
     }
 }

@@ -1,4 +1,4 @@
-package com.cubesoft.oleksandr.havryliuk.big_hack.ui.teacher
+package com.cubesoft.oleksandr.havryliuk.big_hack.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
