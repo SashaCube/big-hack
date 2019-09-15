@@ -1,10 +1,12 @@
 package com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse;
 
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer;
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Mark;
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
 public class AnswerParse implements Mapper<Answer> {
 
@@ -23,9 +25,15 @@ public class AnswerParse implements Mapper<Answer> {
 
     @Override
     public Answer fromJson(@NotNull String json) {
-        ObjectMapper mapper = new ObjectMapper();
         try{
-            return mapper.readValue(json, Answer.class);
+            JSONObject o = new JSONObject(json);
+            return new Answer(
+                    o.getString("id"),
+                    o.getString("taskId"),
+                    o.getString("classId"),
+                    o.getString("studentId"),
+                    o.getString("body")
+            );
         }catch (Exception e) {
             e.printStackTrace();
         }
