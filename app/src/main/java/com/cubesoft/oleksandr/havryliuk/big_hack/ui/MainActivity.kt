@@ -8,6 +8,7 @@ import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.AnswerParse
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
+import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Task
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.GetDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.SendDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
@@ -26,7 +27,17 @@ class MainActivity : AppCompatActivity() {
 
 
         doAsync {
-//          GetDataStore().getTasksByTeacherId("sveQDMN3Fdzi0Yvm3bhkyu0uT/08wQfymhXqD0GT4vU=",)
+          GetDataStore().getTasksByTeacherId("sveQDMN3Fdzi0Yvm3bhkyu0uT/08wQfymhXqD0GT4vU=",object: Utils.LoadData<List<Task>>{
+              override fun onData(data: List<Task>?) {
+                  Log.d("Stringa - ",data.toString())
+                  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+              }
+
+              override fun onFailure() {
+                  Log.d("Stringa2 - ","as")
+                  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+              }
+          })
 //          SendDataStore().main()
         }
 
