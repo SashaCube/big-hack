@@ -83,9 +83,9 @@ public class SendDataStore implements ISendDataStore
         tags.add(answer.getId());
         tags.add(answer.getClassId());
         tags.add(answer.getTaskId());
-        tags.add(answer.getSubjectId());
+        tags.add(answer.getStudentId());
         signAndSendTransaction(privateKey,space,key,tags,
-                "Answer created for: "+answer.getClassId()+"\nby subject> " + answer.getSubjectId(),
+                "Answer created for: "+answer.getClassId()+"\nby subject> " + answer.getStudentId(),
                 (new AnswerParse().toJson(answer)));
     }
 
