@@ -8,8 +8,10 @@ import com.cubesoft.oleksandr.havryliuk.big_hack.data.JsonParse.AnswerParse
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.api.Api
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.EventsContainer
+import com.cubesoft.oleksandr.havryliuk.big_hack.remote.GetDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.SendDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.Test
+import com.cubesoft.oleksandr.havryliuk.big_hack.utils.Utils
 import org.jetbrains.anko.doAsync
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,12 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        doAsync {  SendDataStore().main()}
+        doAsync {
+//          GetDataStore().getTasksByTeacherId("sveQDMN3Fdzi0Yvm3bhkyu0uT/08wQfymhXqD0GT4vU=",)
+//          SendDataStore().main()
+        }
 
-        val answer = Answer("1", "2", "3", "4", "Test")
-        val answerParse = AnswerParse()
-        answerParse.toJson(answer)
-        Log.d("api", answerParse.toJson(answer))
 
         val call = Api.create().getEventsByTag("Thisiscustomtag2")
         call.enqueue(object : Callback<EventsContainer> {

@@ -19,7 +19,7 @@ class GetDataStore {
     private val api = Api.create()
 
     fun getTasksByTeacherId(teacherId: String, callback: Utils.LoadData<List<Task>>) {
-        Api.create().getEventsByTag(SendDataStore.TEATCHER + teacherId)
+        Api.create().getEventsByTag(SendDataStore.TASK + teacherId)
             .enqueue(object : Callback<EventsContainer> {
                 override fun onResponse(call: Call<EventsContainer>, response: Response<EventsContainer>) {
 
