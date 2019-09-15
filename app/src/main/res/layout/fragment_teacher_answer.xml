@@ -52,7 +52,7 @@
             android:text="Ваша Оцінка"/>
 
     <EditText
-            android:id="@+id/ed_mark"
+            android:id="@+id/ed_answer"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center"

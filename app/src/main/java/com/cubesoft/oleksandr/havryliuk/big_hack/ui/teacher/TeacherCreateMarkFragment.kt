@@ -25,7 +25,7 @@ class TeacherCreateMarkFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_student_answer, container, false)
+        val root = inflater.inflate(R.layout.fragment_teacher_answer, container, false)
 
         initView(root)
 
@@ -33,7 +33,7 @@ class TeacherCreateMarkFragment : Fragment() {
     }
 
     private fun initView(root: View) {
-        markEditText = root.ed_mark
+        markEditText = root.ed_answer
 
         root.tv_task_name.text = currentAnswer.taskId
         root.tv_task_body.text = currentAnswer.taskId

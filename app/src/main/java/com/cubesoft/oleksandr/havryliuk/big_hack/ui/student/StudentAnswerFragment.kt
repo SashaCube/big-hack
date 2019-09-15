@@ -10,15 +10,14 @@ import androidx.fragment.app.Fragment
 import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.SendDataStore
-import kotlinx.android.synthetic.main.fragment_create_task.view.*
+import kotlinx.android.synthetic.main.fragment_create_task.view.tv_send_task
+import kotlinx.android.synthetic.main.fragment_student_answer.view.*
 import org.jetbrains.anko.doAsync
 
 
 class StudentAnswerFragment : Fragment() {
 
-    private lateinit var name: EditText
     private lateinit var body: EditText
-    private lateinit var classId: EditText
 
     private val currentTask by lazy {
         (activity as StudentActivity).currenTask
@@ -36,10 +35,10 @@ class StudentAnswerFragment : Fragment() {
     }
 
     private fun initView(root: View) {
-        name = root.ed_name
-        body = root.ed_body
-        classId = root.ed_class_id_name
+        root.tv_task_name.text = currentTask.name
+        root.tv_task_body.text = currentTask.body
 
+        body = root.ed_answer
         root.tv_send_task.setOnClickListener {
             sendTask()
         }
@@ -47,9 +46,9 @@ class StudentAnswerFragment : Fragment() {
 
     private fun sendTask() {
         val answer = Answer(
-            name.text.trim().toString(),
-            body.text.trim().toString(),
-            classId.text.trim().toString(),
+            "ANSWER_ID",
+            currentTask.name,
+            currentTask.classId,
             USER,
             body.text.trim().toString()
         )

@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_teacher_my_task.view.*
 class StudentMarksFragment : Fragment() {
 
     lateinit var viewAdapter: MarkAdapter
+    lateinit var emptyView: View
     private lateinit var swLayout: SwipeRefreshLayout
 
     override fun onCreateView(
@@ -52,6 +53,8 @@ class StudentMarksFragment : Fragment() {
             loadData()
         }
 
+        emptyView = root.empty_view
+
         loadData()
 
     }
@@ -62,6 +65,11 @@ class StudentMarksFragment : Fragment() {
             override fun onData(data: List<Mark>?) {
                 if (data != null) {
                     viewAdapter.update(data)
+                    if(data.isEmpty()){
+                        emptyView.visibility = View.VISIBLE
+                    } else{
+                        emptyView.visibility = View.GONE
+                    }
                 } else {
                     Log.d("Mark_Student", "data is null")
                 }

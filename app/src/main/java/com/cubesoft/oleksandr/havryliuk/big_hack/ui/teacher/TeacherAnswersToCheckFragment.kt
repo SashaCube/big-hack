@@ -12,12 +12,18 @@ import com.cubesoft.oleksandr.havryliuk.big_hack.R
 import com.cubesoft.oleksandr.havryliuk.big_hack.data.model.Answer
 import com.cubesoft.oleksandr.havryliuk.big_hack.remote.GetDataStore
 import com.cubesoft.oleksandr.havryliuk.big_hack.ui.adapter.AnswerAdapter
+import com.cubesoft.oleksandr.havryliuk.big_hack.ui.student.StudentTasksFragment.Companion.SCHOOL_ID
 import com.cubesoft.oleksandr.havryliuk.big_hack.utils.Utils
 import kotlinx.android.synthetic.main.fragment_teacher_answers_to_check.view.*
+import kotlinx.android.synthetic.main.fragment_teacher_answers_to_check.view.empty_view
+import kotlinx.android.synthetic.main.fragment_teacher_answers_to_check.view.recycler_view
+import kotlinx.android.synthetic.main.fragment_teacher_answers_to_check.view.swipe_refresh
+import kotlinx.android.synthetic.main.fragment_teacher_my_task.view.*
 
 class TeacherAnswersToCheckFragment : Fragment() {
 
     lateinit var viewAdapter: AnswerAdapter
+    lateinit var emptyView: View
     private lateinit var swLayout: SwipeRefreshLayout
 
     private val currentTask by lazy {
@@ -55,17 +61,21 @@ class TeacherAnswersToCheckFragment : Fragment() {
             loadData()
         }
 
+        emptyView = root.empty_view
         loadData()
 
     }
 
     fun loadData() {
-        GetDataStore().getAnswersByTaskId(currentTask.id, object : Utils.LoadData<List<Answer>> {
+        GetDataStore().getAnswersByTaskId(currentTask.classId, object : Utils.LoadData<List<Answer>> {
             override fun onData(data: List<Answer>?) {
                 if (data != null) {
                     viewAdapter.update(data)
-
-                } else {
+                    if(data.isEmpty()){
+                        emptyView.visibility = View.VISIBLE
+                    } else{
+                        emptyView.visibility = View.GONE
+                    }                } else {
                     Log.d("Teacher_Answers", "data is null")
                 }
 

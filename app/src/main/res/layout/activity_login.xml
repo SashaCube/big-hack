@@ -5,11 +5,27 @@
               android:layout_height="match_parent">
 
     <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Зайти В Кабінет"
+            android:textColor="@color/wight"
+            android:textSize="20sp"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorPrimaryDark"/>
+
+    <TextView
             android:layout_marginTop="100dp"
             android:labelFor="@id/ed_name"
+            android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ЛОГІН"/>
+            android:text="логін"/>
 
     <EditText
             android:id="@+id/ed_login"
@@ -24,7 +40,8 @@
             android:labelFor="@id/ed_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ПАРОЛЬ"/>
+            android:layout_marginStart="20dp"
+            android:text="Пароль"/>
 
     <EditText
             android:id="@+id/ed_password"
@@ -33,17 +50,19 @@
             android:layout_height="70dp"
             android:gravity="center"
             android:padding="20dp"
-            android:hint="7Б"
+            android:hint="........"
             android:textSize="20sp"/>
 
     <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:background="@color/colorPrimary"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="casual"
+            android:textColor="@color/wight"
+            android:padding="10dp"
             android:text="ВХІД"
             android:textSize="20sp"/>
 

@@ -20,12 +20,13 @@ class TeacherTasksToCheckFragment : Fragment() {
 
     lateinit var viewAdapter: TaskAdapter
     private lateinit var swLayout: SwipeRefreshLayout
+    lateinit var emptyView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_teacher_check, container, false)
+        val root = inflater.inflate(R.layout.fragment_teacher_answers_to_check, container, false)
 
         initAdapter()
         initView(root)
@@ -52,26 +53,32 @@ class TeacherTasksToCheckFragment : Fragment() {
             loadData()
         }
 
+        emptyView = root.empty_view
+
         loadData()
 
     }
 
     fun loadData() {
         // TODO : set to real ID
-        GetDataStore().getTasksByClassId(SCHOOL_ID, object : Utils.LoadData<List<Task>> {
+        GetDataStore().getTasksByTeacherId(TeacherMyTaskFragment.TEACHER_ID, object : Utils.LoadData<List<Task>> {
             override fun onData(data: List<Task>?) {
                 if (data != null) {
                     viewAdapter.update(data)
-
+                    if(data.isEmpty()){
+                        emptyView.visibility = View.VISIBLE
+                    } else{
+                        emptyView.visibility = View.GONE
+                    }
                 } else {
-                    Log.d("Teacher_Task", "data is null")
+                    Log.d("Teacher_My_Task", "data is null")
                 }
 
                 swLayout.isRefreshing = false
             }
 
             override fun onFailure() {
-                Log.d("Teacher_Task", "failure")
+                Log.d("Teacher_My_Task", "failure")
                 swLayout.isRefreshing = false
             }
 

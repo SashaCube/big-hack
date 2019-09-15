@@ -42,7 +42,7 @@ class CreateTaskFragment : Fragment() {
 
     private fun sendTask() {
         val task = Task(
-            "Task_ID",
+            body.text.trim().toString(),
             name.text.trim().toString(),
             TEACHER_ID,
             classId.text.trim().toString(),
